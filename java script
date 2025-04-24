@@ -1,0 +1,36 @@
+// Function to humanize the AI content by adding interactivity and better presentation
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.ai-section');
+    const themeButton = document.getElementById('theme-button');
+    
+    // Function to toggle between light and dark themes
+    function toggleTheme() {
+        document.body.classList.toggle('dark-theme');
+        const themeText = document.body.classList.contains('dark-theme') ? 'Switch to Light Theme' : 'Switch to Dark Theme';
+        themeButton.textContent = themeText;
+    }
+
+    // Function to display section content in a more engaging manner
+    function humanizeContent() {
+        sections.forEach(section => {
+            const title = section.querySelector('h2');
+            const content = section.querySelector('p');
+
+            // Add some fun interaction to each section
+            title.addEventListener('click', function() {
+                // Toggle visibility of content when title is clicked
+                content.style.display = content.style.display === 'none' ? 'block' : 'none';
+            });
+
+            // Adding an additional class for humanizing the content (e.g., bold or more readable)
+            content.classList.add('humanized-text');
+        });
+    }
+
+    // Initialize the humanization of the page
+    humanizeContent();
+
+    // Add event listener for theme toggle
+    themeButton.addEventListener('click', toggleTheme);
+});
+
