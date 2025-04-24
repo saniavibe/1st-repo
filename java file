@@ -1,0 +1,46 @@
+import java.util.*;
+
+public class Humanizer {
+    
+    // Function to humanize raw AI-generated text
+    public static String humanizeText(String aiText) {
+        // Step 1: Split the input text into sentences
+        String[] sentences = aiText.split("\\.");
+        StringBuilder humanizedText = new StringBuilder();
+
+        // Step 2: Process each sentence to humanize it
+        for (String sentence : sentences) {
+            sentence = sentence.trim();
+            
+            // Replace robotic or formal phrases with more natural alternatives
+            sentence = sentence.replaceAll("AI generated", "created by AI");
+            sentence = sentence.replaceAll("I am programmed to", "I can");
+            sentence = sentence.replaceAll("Therefore, I conclude that", "So, here's what I think");
+            sentence = sentence.replaceAll("In conclusion", "To wrap it up");
+            
+            // Step 3: Make sentences more engaging by adding some friendly phrases
+            if (sentence.endsWith("!")) {
+                sentence = sentence.substring(0, sentence.length() - 1) + " 😊";
+            }
+
+            // Step 4: Ensure each sentence ends with proper punctuation
+            if (!sentence.endsWith(".")) {
+                sentence += ".";
+            }
+
+            // Add sentence to the final humanized output
+            humanizedText.append(sentence).append(" ");
+        }
+
+        // Step 5: Return the transformed humanized text
+        return humanizedText.toString().trim();
+    }
+
+    public static void main(String[] args) {
+        // Example AI-generated text
+        String aiText = "AI generated content can seem robotic at times. I am programmed to analyze and present facts logically. Therefore, I conclude that the data supports the hypothesis. In conclusion, this is the final output!";
+
+        System.out.println("Original AI Text:\n" + aiText);
+        System.out.println("\nHumanized Text:\n" + humanizeText(aiText));
+    }
+}
